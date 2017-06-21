@@ -1,0 +1,3 @@
+Initial push from local private repo: Version 0.0-1:
+Includes standard Medli shell, with copying and moving, deletion of files and improved command line args
+Also starts implement of command line database, manages the execution and listing of commands more efficiently (uses Directory<string, string>)
