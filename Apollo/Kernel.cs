@@ -19,7 +19,8 @@ namespace Apollo
             fs = new Sys.FileSystem.CosmosVFS();
             VFSManager.RegisterVFS(fs);
             fs.Initialize();
-            Console.WriteLine("Welcome to the Medli NG Kernel");
+            Init.Start();
+            Console.WriteLine("Welcome to Apollo");
             if (!Directory.Exists(currentdir))
             {
                 Directory.CreateDirectory(currentdir);
@@ -76,7 +77,7 @@ namespace Apollo
             }
             else if (command.StartsWith("mkdir"))
             {
-                Directory.CreateDirectory(currentdir + cmd_args[1]);
+                fsfunc.mkdir(currentdir + cmd_args[1]);
             }
             else if (command.StartsWith("cv "))
             {
@@ -127,5 +128,21 @@ namespace Apollo
                 Console.WriteLine("Invalid command");
             }
         }
+    }
+    public class KernelVariables
+    {
+        public static string etcdir = Kernel.rootdir + "/" + "etc";
+        public static string bindir = Kernel.rootdir + "/" + "bin";
+        public static string sbindir = Kernel.rootdir + "/" + "sbin";
+        public static string procdir = Kernel.rootdir + "/" + "proc";
+        public static string usrdir = Kernel.rootdir + "/" + "usr";
+        public static string homedir = Kernel.rootdir + "/" + "home";
+        public static string rootusrdir = Kernel.rootdir + "/" + "root";
+        public static string tmpdir = Kernel.rootdir + "/" + "tmp";
+        public static string vardir = Kernel.rootdir + "/" + "var";
+        public static string srvdir = Kernel.rootdir + "/" + "srv";
+        public static string libdir = Kernel.rootdir + "/" + "lib";
+        public static string optdir = Kernel.rootdir + "/" + "opt";
+        public static string devdir = Kernel.rootdir + "/" + "dev";
     }
 }
