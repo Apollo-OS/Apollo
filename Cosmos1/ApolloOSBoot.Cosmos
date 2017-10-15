@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.Net.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <BinFormat>elf</BinFormat>
+    <Profile>VMware</Profile>
+    <DebugEnabled>true</DebugEnabled>
+    <DebugMode>Source</DebugMode>
+    <TraceMode>User</TraceMode>
+    <EnableGDB>False</EnableGDB>
+    <StartCosmosGDB>false</StartCosmosGDB>
+    <VMWareEdition>Player</VMWareEdition>
+    <OutputPath>bin\Debug\</OutputPath>
+    <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+    <Deployment>ISO</Deployment>
+    <Launch>VMware</Launch>
+    <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+    <Name>ApolloOSBoot</Name>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="*" />
+    <None Remove="*.Cosmos" />
+    <Compile Remove="*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo\Apollo.csproj">
+      <Name>Apollo</Name>
+      <Project>{ad3800e4-fed3-4d8f-9720-73e5124cf141}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(AppData)\Cosmos User Kit\Build\VSIP\Cosmos.targets" />
+</Project>

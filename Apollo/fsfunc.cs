@@ -16,9 +16,9 @@ namespace Apollo
                     Directory.CreateDirectory(dirname);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("mkdir: " + ex.Message);
+                Console.WriteLine("mkdir: failed to create directory");
             }
         }
         public static void cd(string input)
@@ -47,39 +47,32 @@ namespace Apollo
         }
         public static void dir()
         {
-            try
+            foreach (var dir in Directory.GetDirectories(Kernel.rootdir))
             {
-                foreach (var dir in Directory.GetDirectories(Kernel.rootdir))
+                try
                 {
-                    try
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("<Directory>\t" + dir);
-                        Console.ForegroundColor = ConsoleColor.Black;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("<Directory>\t" + dir);
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
-                foreach (var dir in Directory.GetFiles(Kernel.rootdir))
+                catch
                 {
-                    try
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        string[] sp = dir.Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries);
-                        Console.WriteLine(sp[sp.Length - 1] + "\t" + dir);
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                    Console.WriteLine("Failed to retrieve directories");
                 }
             }
-            catch (Exception ex)
+            foreach (var dir in Directory.GetFiles(Kernel.rootdir))
             {
-                Console.WriteLine(ex.Message);
+                try
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    string[] sp = dir.Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries);
+                    Console.WriteLine(sp[sp.Length - 1] + "\t" + dir);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                catch
+                {
+                    Console.WriteLine("Failed to retrieve files in directory");
+                }
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.Net.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.5</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ProjectGuid>{ad3800e4-fed3-4d8f-9720-73e5124cf141}</ProjectGuid>
   </PropertyGroup>
 
@@ -10,8 +10,14 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Cosmos.Debug.Kernel" Version="1.0.0-*" />
-    <PackageReference Include="Cosmos.System" Version="1.0.0-*" />
+    <PackageReference Include="Cosmos.Debug.Kernel" Version="*" />
+    <PackageReference Include="Cosmos.System2" Version="*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="AIC Framework">
+      <HintPath>..\..\AIC Framework\AIC Framework\bin\Debug\netstandard2.0\AIC Framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

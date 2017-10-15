@@ -24,10 +24,6 @@ namespace Apollo.Command_db
                     g = true;
                 }
             }
-            /*if (!g)
-            {
-                Console.WriteLine("*** FUCKING COSMOS HAS DECIDED TO NOT DO THIS CODE ***");
-            }*/
         }
     }
 }

@@ -18,24 +18,17 @@ namespace Apollo
         }
         public static void ViewFile(string file)
         {
-            try
+            if (File.Exists(Kernel.rootdir + @"\" + file))
             {
-                if (File.Exists(Kernel.rootdir + @"\" + file))
+                string[] lines = File.ReadAllLines(Kernel.rootdir + @"\" + file);
+                foreach (string line in lines)
                 {
-                    string[] lines = File.ReadAllLines(Kernel.rootdir + @"\" + file);
-                    foreach (string line in lines)
-                    {
-                        Console.WriteLine(line);
-                    }
-                }
-                else if (!File.Exists(Kernel.rootdir + @"\" + file))
-                {
-                    Console.WriteLine("File not found!");
+                    Console.WriteLine(line);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("File not found!");
             }
         }
     }

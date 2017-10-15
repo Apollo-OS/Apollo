@@ -5,6 +5,7 @@ using Sys = Cosmos.System;
 using System.IO;
 using Apollo.Command_db;
 using Cosmos.System.FileSystem.VFS;
+using AIC_Framework;
 
 namespace Apollo
 {
@@ -19,6 +20,7 @@ namespace Apollo
             fs = new Sys.FileSystem.CosmosVFS();
             VFSManager.RegisterVFS(fs);
             fs.Initialize();
+            AIC_Framework.Bootscreen.Show("Apollo OS", Bootscreen.Effect.Matrix, ConsoleColor.DarkGreen, 5);
             Init.Start();
             Console.WriteLine("Welcome to Apollo");
             if (!Directory.Exists(currentdir))
@@ -28,44 +30,57 @@ namespace Apollo
             }
             else
             {
-                usr_vars.readVars();
+                //usr_vars.readVars();
             }
+            Console.Clear();
+
+            Console.Clear();
         }
         protected override void Run()
         {
-            Console.Write("/>");
+            prompt();
+        }
+        public static void prompt()
+        {
+            Console.Write(currentdir + " />");
             var command = Console.ReadLine();
             string[] cmd_args = command.Split(' ');
-            if (command.StartsWith("mv "))
-            {
-                if (File.Exists(cmd_args[1]))
-                {
-                    File.Move(currentdir + cmd_args[1], rootdir + cmd_args[2]);
-                }
-                else
-                {
-                    Console.WriteLine("File does not exist");
-                }
-            }
-            else if (command.StartsWith("echo"))
+            //if (command.StartsWith("mv "))
+            //{
+            //    if (File.Exists(cmd_args[1]))
+            //    {
+            //        File.Move(currentdir + cmd_args[1], rootdir + cmd_args[2]);
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("File does not exist");
+            //    }
+            //}
+            if (command.StartsWith("echo"))
             {
                 if (cmd_args[1].StartsWith("$"))
                 {
-                    usr_vars.readVars();
-                    Console.WriteLine(usr_vars.retrieve(cmd_args[1].Remove(0, 1)));
+                    Console.WriteLine("Dictionaries not yet implemented!");
+                    //usr_vars.readVars();
+                    //Console.WriteLine(usr_vars.retrieve(cmd_args[1].Remove(0, 1)));
                 }
                 else
                 {
                     Console.WriteLine(cmd_args[1]);
                 }
             }
+            else if (command == "tui")
+            {
+                TUI.TUI.Run();
+            }
             else if (command.StartsWith("$"))
             {
-                usr_vars.store(command.Remove(0, 1), cmd_args[2]);
+                Console.WriteLine("Dictionaries not yet implemented!");
+                //usr_vars.store(command.Remove(0, 1), cmd_args[2]);
             }
             else if (command.StartsWith("get "))
             {
-                usr_vars.retrieve(cmd_args[1]);
+                //usr_vars.retrieve(cmd_args[1]);
             }
             else if (command.StartsWith("cp "))
             {
@@ -94,6 +109,10 @@ namespace Apollo
                     Console.WriteLine("File does not exist");
                 }
             }
+            else if (command.StartsWith("cd"))
+            {
+                fsfunc.cd(cmd_args[1]);
+            }
             else if (command == "dir")
             {
                 fsfunc.dir();
@@ -104,16 +123,25 @@ namespace Apollo
             }
             else if (command == "shutdown")
             {
-                usr_vars.saveVars();
-                //shutdown();
+                Console.WriteLine("Dictionaries not yet implemented!");
+                //usr_vars.saveVars();
+                userACPI.Shutdown();
+            }
+            else if (command == "reboot")
+            {
+                Console.WriteLine("Dictionaries not yet implemented!");
+                //usr_vars.saveVars();
+                userACPI.Reboot();
             }
             else if (command == "savevars")
             {
-                usr_vars.saveVars();
+                Console.WriteLine("Dictionaries not yet implemented!");
+                //usr_vars.saveVars();
             }
             else if (command == "loadvars")
             {
-                usr_vars.readVars();
+                Console.WriteLine("Dictionaries not yet implemented!");
+                //usr_vars.readVars();
             }
             else if (command.StartsWith("help "))
             {
@@ -127,7 +155,7 @@ namespace Apollo
             {
                 Console.WriteLine("Invalid command");
             }
-        }
+    }
     }
     public class KernelVariables
     {

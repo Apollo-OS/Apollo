@@ -22,7 +22,7 @@ namespace Apollo
                 fsfunc.mkdir(KernelVariables.procdir);
                 fsfunc.mkdir(KernelVariables.usrdir);
                 fsfunc.mkdir(KernelVariables.homedir);
-                fsfunc.mkdir(KernelVariables.rootdir);
+                fsfunc.mkdir(KernelVariables.rootusrdir);
                 fsfunc.mkdir(KernelVariables.tmpdir);
                 fsfunc.mkdir(KernelVariables.vardir);
                 fsfunc.mkdir(KernelVariables.srvdir);
@@ -30,9 +30,9 @@ namespace Apollo
                 fsfunc.mkdir(KernelVariables.optdir);
                 fsfunc.mkdir(KernelVariables.devdir);
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Failed to create directories!");
             }
         }
         public static void UserInit()
