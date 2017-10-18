@@ -8,8 +8,8 @@ namespace Apollo.Command_db.Commands
 {
     public class GetHelp : cmd_db
     {
-        public string func_name = "help";
-        public string cmd_name = "Help";
+        public new string func_name = "help";
+        public new string cmd_name = "Help";
         /*
          * A very primitive paging system (not RAM paging, I mean manpages etc...)
          * Tidied up a bit, might avoid the text-spilling-onto-next-line issue but certainly doesn't eliminate it

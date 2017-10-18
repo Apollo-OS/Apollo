@@ -21,6 +21,23 @@ namespace Apollo
                 Console.WriteLine("mkdir: failed to create directory");
             }
         }
+        public static void mv(string src, string dest)
+        {
+            if (File.Exists(src))
+            {
+                //Small little hack
+                File.Copy(src, dest);
+                File.Delete(src);
+
+                //Do nowt for now - File.Move isn't plugged
+                //Console.WriteLine("File.Move needs plugging!");
+                //File.Move(src, dest);
+            }
+            else
+            {
+                Console.WriteLine("file does not exist");
+            }
+        }
         public static void cd(string input)
         {
             string path = input.Remove(0, 3); //cd <- 2 chars
