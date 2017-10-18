@@ -40,7 +40,7 @@ namespace Apollo
             Console.WriteLine("It is dangerous to run some commands as a root user,\nso it's important that you use a non-admin user.");
             Console.WriteLine("Enter a new username for first user:");
             KernelVariables.user = Console.ReadLine();
-            fsfunc.mkdir(KernelVariables.homedir + "/" + username);
+            fsfunc.mkdir(KernelVariables.homedir + "/" + KernelVariables.user);
         }
     }
 }

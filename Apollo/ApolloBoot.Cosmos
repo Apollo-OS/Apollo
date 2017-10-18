@@ -22,10 +22,7 @@
     <Compile Remove="*" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cosmos.Core.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
-    <Reference Include="Cosmos.Core.Plugs.Asm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
     <Reference Include="Cosmos.Debug.Kernel.Plugs.Asm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
-    <Reference Include="Cosmos.System.Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo\Apollo.csproj">
@@ -37,6 +34,8 @@
   <ItemGroup>
     <Folder Include="Command_db\" />
     <Folder Include="Command_db\commands\" />
+    <Folder Include="TUI\" />
+    <Folder Include="TUI\MenuConfig\" />
   </ItemGroup>
   <Import Project="$(AppData)\Cosmos User Kit\Build\VSIP\Cosmos.targets" />
 </Project>

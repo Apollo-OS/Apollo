@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apollo", "Apollo\Apollo.csproj", "{AD3800E4-FED3-4D8F-9720-73E5124CF141}"
 EndProject
-Project("{471EC4BB-E47E-4229-A789-D1F5F83B52D4}") = "ApolloOSBoot", "Cosmos1\ApolloOSBoot.Cosmos", "{465BD5A3-48CF-40C6-86F0-E1B901A0987C}"
+Project("{471EC4BB-E47E-4229-A789-D1F5F83B52D4}") = "ApolloBoot", "Apollo\ApolloBoot.Cosmos", "{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{AD3800E4-FED3-4D8F-9720-73E5124CF141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD3800E4-FED3-4D8F-9720-73E5124CF141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD3800E4-FED3-4D8F-9720-73E5124CF141}.Release|Any CPU.Build.0 = Release|Any CPU
-		{465BD5A3-48CF-40C6-86F0-E1B901A0987C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{465BD5A3-48CF-40C6-86F0-E1B901A0987C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{465BD5A3-48CF-40C6-86F0-E1B901A0987C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{465BD5A3-48CF-40C6-86F0-E1B901A0987C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -57,7 +57,7 @@ namespace Apollo.TUI
             public override void Execute()
             {
                 Console.Clear();
-                Kernel.prompt();
+                Shell.prompt();
             }
         }
     }

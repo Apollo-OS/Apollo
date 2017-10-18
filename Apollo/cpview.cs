@@ -18,9 +18,9 @@ namespace Apollo
         }
         public static void ViewFile(string file)
         {
-            if (File.Exists(Kernel.rootdir + @"\" + file))
+            if (File.Exists(KernelVariables.currentdir + @"\" + file))
             {
-                string[] lines = File.ReadAllLines(Kernel.rootdir + @"\" + file);
+                string[] lines = File.ReadAllLines(KernelVariables.currentdir + @"\" + file);
                 foreach (string line in lines)
                 {
                     Console.WriteLine(line);

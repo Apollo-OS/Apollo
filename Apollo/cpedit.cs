@@ -32,8 +32,8 @@ namespace Apollo
                     string notsaved = Console.ReadLine();
                     if (notsaved == "y")
                     {
-                        File.Create(Kernel.rootdir + @"\" + file).Dispose();
-                        File.WriteAllText(Kernel.rootdir + @"\" + file, text);
+                        File.Create(KernelVariables.currentdir + @"\" + file).Dispose();
+                        File.WriteAllText(KernelVariables.currentdir + @"\" + file, text);
                         savedtext = text;
                         running = false;
                     }
@@ -44,8 +44,8 @@ namespace Apollo
                 }
                 if (line == "save")
                 {
-                    File.Create(Kernel.rootdir + @"\" + file).Dispose();
-                    File.WriteAllText(Kernel.rootdir + @"\" + file, text);
+                    File.Create(KernelVariables.currentdir + @"\" + file).Dispose();
+                    File.WriteAllText(KernelVariables.currentdir + @"\" + file, text);
                     savedtext = text;
                     running = false;
                 }
