@@ -42,6 +42,7 @@ namespace Apollo
     }
     public class KernelVariables
     {
+        public static string user;
         public static string rootdir = @"0:\\";
         public static string currentdir = rootdir;
         public static string etcdir = rootdir + "/" + "etc";

@@ -41,30 +41,30 @@ namespace Apollo
         public static void cd(string input)
         {
             string path = input.Remove(0, 3); //cd <- 2 chars
-            if (Directory.Exists(Kernel.currentdir + path))
+            if (Directory.Exists(KernelVariables.currentdir + path))
             {
-                Kernel.currentdir = Kernel.currentdir + path;
+                KernelVariables.currentdir = KernelVariables.currentdir + path;
             }
             else if (Directory.Exists(path))
             {
-                Kernel.currentdir = path;
+                KernelVariables.currentdir = path;
             }
             else
             {
-                Console.WriteLine("Folder does not exist " + Kernel.currentdir + "/" + path);
+                Console.WriteLine("Folder does not exist " + KernelVariables.currentdir + "/" + path);
             }
         }
         public static void deldir(string dirname)
         {
-            Directory.Delete(Kernel.currentdir + "/" + dirname);
+            Directory.Delete(KernelVariables.currentdir + "/" + dirname);
         }
         public static void delfile(string filename)
         {
-            File.Delete(Kernel.currentdir + "/" + filename);
+            File.Delete(KernelVariables.currentdir + "/" + filename);
         }
         public static void dir()
         {
-            foreach (var dir in Directory.GetDirectories(Kernel.rootdir))
+            foreach (var dir in Directory.GetDirectories(KernelVariables.rootdir))
             {
                 try
                 {
@@ -77,7 +77,7 @@ namespace Apollo
                     Console.WriteLine("Failed to retrieve directories");
                 }
             }
-            foreach (var dir in Directory.GetFiles(Kernel.rootdir))
+            foreach (var dir in Directory.GetFiles(KernelVariables.rootdir))
             {
                 try
                 {
