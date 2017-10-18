@@ -14,7 +14,7 @@ namespace Apollo
         public static cmd_mgmt cmds = new cmd_mgmt();
         public static void prompt()
         {
-            Console.Write(KernelVariables.currentdir + " />");
+            Console.Write(KernelVariables.user + "/> " + KernelVariables.currentdir + "$");
             var command = Console.ReadLine();
             string[] cmd_args = command.Split(' ');
             if (command.StartsWith("echo"))
