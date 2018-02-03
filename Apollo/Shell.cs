@@ -22,8 +22,8 @@ namespace Apollo
                 if (cmd_args[1].StartsWith("$"))
                 {
                     Console.WriteLine("Dictionaries not yet implemented!");
-                    //usr_vars.readVars();
-                    //Console.WriteLine(usr_vars.retrieve(cmd_args[1].Remove(0, 1)));
+                    usr_vars.readVars();
+                    Console.WriteLine(usr_vars.retrieve(cmd_args[1].Remove(0, 1)));
                 }
                 else
                 {
@@ -41,11 +41,11 @@ namespace Apollo
             else if (command.StartsWith("$"))
             {
                 Console.WriteLine("Dictionaries not yet implemented!");
-                //usr_vars.store(command.Remove(0, 1), cmd_args[2]);
+                usr_vars.store(command.Remove(0, 1), cmd_args[2]);
             }
             else if (command.StartsWith("get "))
             {
-                //usr_vars.retrieve(cmd_args[1]);
+                usr_vars.retrieve(cmd_args[1]);
             }
             else if (command.StartsWith("cp "))
             {

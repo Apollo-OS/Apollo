@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apollo", "Apollo\Apollo.csproj", "{AD3800E4-FED3-4D8F-9720-73E5124CF141}"
-EndProject
-Project("{471EC4BB-E47E-4229-A789-D1F5F83B52D4}") = "ApolloBoot", "Apollo\ApolloBoot.Cosmos", "{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo", "Apollo\Apollo.csproj", "{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AD3800E4-FED3-4D8F-9720-73E5124CF141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD3800E4-FED3-4D8F-9720-73E5124CF141}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD3800E4-FED3-4D8F-9720-73E5124CF141}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD3800E4-FED3-4D8F-9720-73E5124CF141}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDDFB0D9-EE1B-4D70-A708-D92A0ACF0BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {325F0841-2CEF-490A-9F69-5A282D348181}
+		SolutionGuid = {601AC958-99DD-4908-B87E-B9DBD31D0270}
 	EndGlobalSection
 EndGlobal
