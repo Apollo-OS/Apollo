@@ -14,6 +14,7 @@ namespace Apollo
                 if (!Directory.Exists(dirname))
                 {
                     Directory.CreateDirectory(dirname);
+                    Console.WriteLine("Creating directory " + dirname + "...");
                 }
             }
             catch
@@ -70,7 +71,7 @@ namespace Apollo
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("<Directory>\t" + dir);
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 catch
                 {

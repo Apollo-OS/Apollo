@@ -9,7 +9,7 @@
         <DebugEnabled>False</DebugEnabled>
         <DebugMode>Source</DebugMode>
         <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
-        <OutputPath>bin\Debug\netcoreapp2.0\</OutputPath>
+        <OutputPath>bin\Debug\netcoreapp2.0\netcoreapp2.0\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup>

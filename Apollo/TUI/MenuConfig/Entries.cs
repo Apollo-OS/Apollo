@@ -13,7 +13,9 @@ namespace Apollo.TUI
         {
             Categories.Power.AddEntry(new PowerEntries.ShutdownEntry());
             Categories.Power.AddEntry(new PowerEntries.RebootEntry());
+            Categories.Power.AddEntry(new PowerEntries.RAMEntry());
             Categories.Main.AddEntry(new MainEntries.Exit());
+            
         }
     }
     class PowerEntries
@@ -57,6 +59,8 @@ namespace Apollo.TUI
             public override void Execute()
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
                 Shell.prompt();
             }
         }

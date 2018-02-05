@@ -28,19 +28,28 @@ namespace Apollo
         }
         public static void readVars()
         {
-            string[] vars = File.ReadAllLines(varsfile);
-            foreach (string var in vars)
+            try
             {
-                string[] varcontent = var.Split(' ');
-                if (!usr_var.ContainsKey(var))
+                string[] vars = File.ReadAllLines(varsfile);
+                foreach (string var in vars)
                 {
-                    usr_var.Add(var, varcontent[1]);
-                }
-                else
-                {
-                    Console.WriteLine("Variable already loaded: " + varcontent[0]);
+                    string[] varcontent = var.Split(' ');
+                    if (!usr_var.ContainsKey(var))
+                    {
+                        usr_var.Add(var, varcontent[1]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Variable already loaded: " + varcontent[0]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to retrieve variables");
+                Console.WriteLine(ex.Message);
+            }
+            
         }
         public static void saveVars()
         {

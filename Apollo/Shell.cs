@@ -6,6 +6,7 @@ using System.IO;
 using Apollo.Command_db;
 using Cosmos.System.FileSystem.VFS;
 using AIC_Framework;
+using Apollo.Environment;
 
 namespace Apollo
 {
@@ -22,7 +23,7 @@ namespace Apollo
                 if (cmd_args[1].StartsWith("$"))
                 {
                     Console.WriteLine("Dictionaries not yet implemented!");
-                    usr_vars.readVars();
+                    //usr_vars.readVars();
                     Console.WriteLine(usr_vars.retrieve(cmd_args[1].Remove(0, 1)));
                 }
                 else
@@ -41,15 +42,15 @@ namespace Apollo
             else if (command.StartsWith("$"))
             {
                 Console.WriteLine("Dictionaries not yet implemented!");
-                usr_vars.store(command.Remove(0, 1), cmd_args[2]);
+                //usr_vars.store(command.Remove(0, 1), cmd_args[2]);
             }
             else if (command.StartsWith("get "))
             {
-                usr_vars.retrieve(cmd_args[1]);
+                //usr_vars.retrieve(cmd_args[1]);
             }
             else if (command.StartsWith("cp "))
             {
-                cpedit.Run(cmd_args[1]);
+                Applications.cocoapadEditor.Run(cmd_args[1]);
             }
             else if (command == "cv")
             {
@@ -57,7 +58,7 @@ namespace Apollo
             }
             else if (command.StartsWith("mkdir"))
             {
-                fsfunc.mkdir(KernelVariables.currentdir + cmd_args[1]);
+                fsfunc.mkdir(Environment.KernelVariables.currentdir + cmd_args[1]);
             }
             else if (command.StartsWith("cv "))
             {
@@ -67,7 +68,7 @@ namespace Apollo
             {
                 if (File.Exists(cmd_args[1]))
                 {
-                    File.Copy(KernelVariables.rootdir + cmd_args[1], KernelVariables.rootdir + cmd_args[2]);
+                    File.Copy(Environment.KernelVariables.rootdir + cmd_args[1], Environment.KernelVariables.rootdir + cmd_args[2]);
                 }
                 else
                 {
@@ -84,7 +85,7 @@ namespace Apollo
             }
             else if (command == "help")
             {
-                cmds.Run("help");
+                Command_db.Commands.GetHelp.full();
             }
             else if (command == "shutdown")
             {

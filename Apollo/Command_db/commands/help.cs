@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace Apollo.Command_db.Commands
 {
-    public class GetHelp : cmd_db
+    public class GetHelp
     {
-        public new string func_name = "help";
-        public new string cmd_name = "Help";
         /*
          * A very primitive paging system (not RAM paging, I mean manpages etc...)
          * Tidied up a bit, might avoid the text-spilling-onto-next-line issue but certainly doesn't eliminate it
          * That's an issue which needs sorting, probs leave it until we go .NET Core
          */
-         public override void Run(string args)
+         public static void Run(string args)
         {
             if (args == "1")
             {

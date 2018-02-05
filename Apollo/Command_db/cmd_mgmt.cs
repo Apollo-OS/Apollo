@@ -9,7 +9,7 @@ namespace Apollo.Command_db
         public List<cmd_db> Commands = new List<cmd_db>();
         public void Init()
         {
-            Commands.Add(new Commands.GetHelp());
+            //Commands.Add(new Commands.GetHelp());
         }
         public void Run(string cmd, string args = "")
         {
