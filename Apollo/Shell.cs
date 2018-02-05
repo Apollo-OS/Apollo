@@ -7,6 +7,7 @@ using Apollo.Command_db;
 using Cosmos.System.FileSystem.VFS;
 using AIC_Framework;
 using Apollo.Environment;
+using Apollo.Applications;
 
 namespace Apollo
 {
@@ -54,21 +55,21 @@ namespace Apollo
             }
             else if (command == "cv")
             {
-                cpview.Run();
+                Console.WriteLine("Usage: cv <filename>");
             }
             else if (command.StartsWith("mkdir"))
             {
-                fsfunc.mkdir(Environment.KernelVariables.currentdir + cmd_args[1]);
+                fsfunc.mkdir(KernelVariables.currentdir + cmd_args[1]);
             }
             else if (command.StartsWith("cv "))
             {
-                cpview.ViewFile(cmd_args[1]);
+                cocoapadViewer.ViewFile(cmd_args[1]);
             }
             else if (command.StartsWith("copy "))
             {
                 if (File.Exists(cmd_args[1]))
                 {
-                    File.Copy(Environment.KernelVariables.rootdir + cmd_args[1], Environment.KernelVariables.rootdir + cmd_args[2]);
+                    File.Copy(KernelVariables.rootdir + cmd_args[1], KernelVariables.rootdir + cmd_args[2]);
                 }
                 else
                 {
