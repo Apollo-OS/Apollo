@@ -61,7 +61,7 @@ namespace Apollo.TUI
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.BackgroundColor = ConsoleColor.Black;
-                Shell.prompt();
+                Kernel.MainProcess();
             }
         }
     }

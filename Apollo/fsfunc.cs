@@ -15,7 +15,6 @@ namespace Apollo
                 if (!Directory.Exists(dirname))
                 {
                     Directory.CreateDirectory(dirname);
-                    Console.WriteLine("Creating directory " + dirname + "...");
                 }
             }
             catch

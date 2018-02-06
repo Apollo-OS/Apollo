@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AIC_Framework;
 using Apollo.Environment;
 
 namespace Apollo
@@ -9,6 +10,9 @@ namespace Apollo
     {
         public static void Start()
         {
+            AConsole.WriteLine("Welcome to Apollo OS", ConsoleColor.White, true, false);
+            AConsole.WriteLine("Press any key to continue...", ConsoleColor.White, true, false);
+            AConsole.ReadKey(true);
             make_sys_dir();
             UserInit();
         }
@@ -41,7 +45,7 @@ namespace Apollo
             Console.WriteLine("It is dangerous to run some commands as a root user,\nso it's important that you use a non-admin user.");
             Console.WriteLine("Enter a new username for first user:");
             KernelVariables.user = Console.ReadLine();
-            fsfunc.mkdir(KernelVariables.homedir + "/" + KernelVariables.user);
+            fsfunc.mkdir(KernelVariables.homedir + @"\" + KernelVariables.user);
         }
     }
 }

@@ -9,7 +9,7 @@
         <DebugEnabled>False</DebugEnabled>
         <DebugMode>Source</DebugMode>
         <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
-        <OutputPath>bin\Debug\netcoreapp2.0\netcoreapp2.0\</OutputPath>
+        <OutputPath>bin\Debug\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -33,6 +33,10 @@
       <Reference Include="AIC Framework">
         <HintPath>..\..\Medli\AIC\AIC Framework.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Command_db\commands\" />
     </ItemGroup>
 
 </Project>

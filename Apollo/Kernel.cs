@@ -34,9 +34,15 @@ namespace Apollo
             }
             Console.Clear();
         }
+        public static void MainProcess()
+        {
+            Console.Write(Environment.KernelVariables.user + "/> " + Environment.KernelVariables.currentdir + "$");
+            string cmd = Console.ReadLine();
+            Shell.prompt(cmd);
+        }
         protected override void Run()
         {
-            Shell.prompt();
+            MainProcess();
         }
         
     }

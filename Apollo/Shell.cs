@@ -14,10 +14,9 @@ namespace Apollo
     public static class Shell
     {
         public static cmd_mgmt cmds = new cmd_mgmt();
-        public static void prompt()
+        public static void prompt(string cmdline)
         {
-            Console.Write(KernelVariables.user + "/> " + KernelVariables.currentdir + "$");
-            var command = Console.ReadLine();
+            var command = cmdline;
             string[] cmd_args = command.Split(' ');
             if (command.StartsWith("echo"))
             {
@@ -40,22 +39,62 @@ namespace Apollo
             {
                 TUI.TUI.Run();
             }
+            else if (command == "cowsay")
+            {
+                Cowsay.Cow("Say something using 'Cowsay <message>'");
+                Console.WriteLine(@"You can also use 'cowsay -f' tux for penguin, cow for cow and 
+sodomized-sheep for, you guessed it, a sodomized-sheep");
+            }
+            else if (command.StartsWith("cowsay"))
+            {
+                if (cmd_args[1] == "-f")
+                {
+                    if (cmd_args[2] == "cow")
+                    {
+                        Cowsay.Cow(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                    }
+                    else if (cmd_args[2] == "tux")
+                    {
+                        Cowsay.Tux(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                    }
+                    else if (cmd_args[2] == "sodomized-sheep")
+                    {
+                        Cowsay.SodomizedSheep(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                    }
+                }
+                else
+                {
+                    Cowsay.Cow(command.Substring(7));
+                }
+            }
             else if (command.StartsWith("$"))
             {
                 Console.WriteLine("Dictionaries not yet implemented!");
                 //usr_vars.store(command.Remove(0, 1), cmd_args[2]);
             }
+            else if (command.StartsWith("run "))
+            {
+                if (!File.Exists(KernelVariables.currentdir + cmd_args[1]))
+                {
+                    Console.WriteLine("File doesn't exist!");
+                }
+                else
+                {
+                    Mdscript.Execute(KernelVariables.currentdir + cmd_args[1]);
+                }
+            }
             else if (command.StartsWith("get "))
             {
                 //usr_vars.retrieve(cmd_args[1]);
             }
-            else if (command.StartsWith("cp "))
+            else if (command.StartsWith("edit "))
             {
                 Applications.cocoapadEditor.Run(cmd_args[1]);
             }
-            else if (command == "cv")
+            else if (command == "edit")
             {
-                Console.WriteLine("Usage: cv <filename>");
+                Console.WriteLine("Usage: edit <filename>");
+                Console.WriteLine("Launches the text editor using the filename specified");
             }
             else if (command.StartsWith("mkdir"))
             {
@@ -64,6 +103,14 @@ namespace Apollo
             else if (command.StartsWith("cv "))
             {
                 cocoapadViewer.ViewFile(cmd_args[1]);
+            }
+            else if (command == "miv")
+            {
+                MIV.StartMIV();
+            }
+            else if (command.StartsWith("miv "))
+            {
+                MIV.StartMIV(cmd_args[1]);
             }
             else if (command.StartsWith("copy "))
             {

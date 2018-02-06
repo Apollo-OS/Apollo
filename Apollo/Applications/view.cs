@@ -14,8 +14,7 @@ namespace Apollo.Applications
         {
             AConsole.Fill(ConsoleColor.Blue);
             Console.CursorTop = 0;
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.WriteLine(" Cocoapad Viewer ");
+            AConsole.WriteLineEx(" Cocoapad Viewer ", ConsoleColor.White, ConsoleColor.Gray, true, false);
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.CursorTop = 3;
         }
