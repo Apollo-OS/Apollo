@@ -41,7 +41,7 @@ namespace Apollo
         }
         public static void cd(string input)
         {
-            string path = input.Remove(0, 3); //cd <- 2 chars
+            string path = input;
             if (Directory.Exists(KernelVariables.currentdir + path))
             {
                 KernelVariables.currentdir = KernelVariables.currentdir + path;

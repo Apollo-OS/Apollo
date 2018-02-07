@@ -9,7 +9,7 @@ using AIC_Framework;
 
 namespace Apollo
 {
-    public class Kernel: Sys.Kernel
+    public class Kernel : Sys.Kernel
     {
         Sys.FileSystem.CosmosVFS fs;
 

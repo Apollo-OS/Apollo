@@ -16,9 +16,11 @@ namespace Apollo
         public static cmd_mgmt cmds = new cmd_mgmt();
         public static void prompt(string cmdline)
         {
-            var command = cmdline;
+            var command = cmdline.ToLower();
+            var cmdCI = cmdline;
+            string[] cmdCI_args = cmdline.Split(' ');
             string[] cmd_args = command.Split(' ');
-            if (command.StartsWith("echo"))
+            if (cmdline.StartsWith("echo"))
             {
                 if (cmd_args[1].StartsWith("$"))
                 {
@@ -28,7 +30,7 @@ namespace Apollo
                 }
                 else
                 {
-                    Console.WriteLine(cmd_args[1]);
+                    Console.WriteLine(cmdCI_args[1]);
                 }
             }
             else if (command.StartsWith("mv"))
@@ -127,13 +129,44 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             {
                 fsfunc.cd(cmd_args[1]);
             }
+            if (command == "cd ..")
+            {
+                try
+                {
+                    if (KernelVariables.currentdir == KernelVariables.rootdir)
+                    {
+                        Console.WriteLine("Cannot go up any more levels!");
+                    }
+                    else
+                    {
+                        var pos = KernelVariables.currentdir.LastIndexOf('\\');
+                        if (pos >= 0)
+                        {
+                            KernelVariables.currentdir = KernelVariables.currentdir.Substring(0, pos) + @"\";
+                        }
+                        /*                        
+                        var dir = FSfunc.fs.GetDirectory(Kernel.current_dir);
+                        string p = dir.mParent.mName;
+                        if (!string.IsNullOrEmpty(p))
+                        {
+                            Kernel.current_dir = p;
+                        }
+                        */
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Failed to change directory!");
+                    //ErrorHandler.Init(0, ex.Message, false, "");
+                }
+            }
             else if (command == "dir")
             {
                 fsfunc.dir();
             }
             else if (command == "help")
             {
-                Command_db.Commands.GetHelp.full();
+                Command_db.Commands.GetHelp.Full();
             }
             else if (command == "shutdown")
             {
@@ -159,7 +192,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command.StartsWith("help "))
             {
-
+                Command_db.Commands.GetHelp.Specific(cmd_args[1]);
             }
             else if (command == "")
             {
