@@ -20,26 +20,37 @@ namespace Apollo
             var cmdCI = cmdline;
             string[] cmdCI_args = cmdline.Split(' ');
             string[] cmd_args = command.Split(' ');
-            if (cmdline.StartsWith("echo"))
+            if (command == "clear")
             {
-                if (cmd_args[1].StartsWith("$"))
-                {
-                    Console.WriteLine("Dictionaries not yet implemented!");
+                Console.Clear();
+            }
+            else if (command.StartsWith("echo $"))
+            {
+                Console.WriteLine(usr_vars.retrieve(cmdCI.Remove(0, 6)));
+            }
+            else if (cmdline.StartsWith("echo "))
+            {
+                //if (cmd_args[1].StartsWith("$"))
+                //{
+                    //Console.WriteLine("Dictionaries not yet implemented!");
                     //usr_vars.readVars();
-                    Console.WriteLine(usr_vars.retrieve(cmd_args[1].Remove(0, 1)));
-                }
-                else
-                {
+                    //Console.WriteLine(usr_vars.retrieve(cmd_args[1].Remove(0, 1)));
+                //}
+                //else
+                //{
                     Console.WriteLine(cmdCI_args[1]);
-                }
+                //}
             }
             else if (command.StartsWith("mv"))
             {
-                fsfunc.mv(KernelVariables.currentdir + cmd_args[1], KernelVariables.currentdir + cmd_args[2]);
+                fsfunc.mv(KernelVariables.currentdir + cmdCI_args[1], cmdCI_args[2]);
             }
             else if (command == "tui")
             {
                 TUI.TUI.Run();
+                Console.Clear();
+                Console.WriteLine("TUI Session closed. Press any key to continue...");
+                Console.ReadKey(true);
             }
             else if (command == "cowsay")
             {
@@ -53,15 +64,15 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
                 {
                     if (cmd_args[2] == "cow")
                     {
-                        Cowsay.Cow(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                        Cowsay.Cow(cmdCI.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
                     }
                     else if (cmd_args[2] == "tux")
                     {
-                        Cowsay.Tux(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                        Cowsay.Tux(cmdCI.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
                     }
                     else if (cmd_args[2] == "sodomized-sheep")
                     {
-                        Cowsay.SodomizedSheep(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                        Cowsay.SodomizedSheep(cmdCI.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
                     }
                 }
                 else
@@ -71,27 +82,23 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command.StartsWith("$"))
             {
-                Console.WriteLine("Dictionaries not yet implemented!");
-                //usr_vars.store(command.Remove(0, 1), cmd_args[2]);
+                //Console.WriteLine("Dictionaries not yet implemented!");
+                usr_vars.store(cmdCI_args[0].Remove(0, 1), cmdCI_args[1]);
             }
             else if (command.StartsWith("run "))
             {
-                if (!File.Exists(KernelVariables.currentdir + cmd_args[1]))
+                if (!File.Exists(KernelVariables.currentdir + cmdCI_args[1]))
                 {
                     Console.WriteLine("File doesn't exist!");
                 }
                 else
                 {
-                    Mdscript.Execute(KernelVariables.currentdir + cmd_args[1]);
+                    Mdscript.Execute(KernelVariables.currentdir + cmdCI_args[1]);
                 }
-            }
-            else if (command.StartsWith("get "))
-            {
-                //usr_vars.retrieve(cmd_args[1]);
             }
             else if (command.StartsWith("edit "))
             {
-                Applications.cocoapadEditor.Run(cmd_args[1]);
+                Applications.Commands.TextEditor.Run(cmdCI_args[1]);
             }
             else if (command == "edit")
             {
@@ -100,11 +107,11 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command.StartsWith("mkdir"))
             {
-                fsfunc.mkdir(KernelVariables.currentdir + cmd_args[1]);
+                fsfunc.mkdir(KernelVariables.currentdir + cmdCI_args[1], false);
             }
             else if (command.StartsWith("cv "))
             {
-                cocoapadViewer.ViewFile(cmd_args[1]);
+                Applications.Commands.TextViewer.Run(cmdCI_args[1]);
             }
             else if (command == "miv")
             {
@@ -112,53 +119,26 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command.StartsWith("miv "))
             {
-                MIV.StartMIV(cmd_args[1]);
+                MIV.StartMIV(cmdCI.Remove(0, 4));
             }
             else if (command.StartsWith("copy "))
             {
-                if (File.Exists(cmd_args[1]))
+                if (File.Exists(cmdCI_args[1]))
                 {
-                    File.Copy(KernelVariables.rootdir + cmd_args[1], KernelVariables.rootdir + cmd_args[2]);
+                    File.Copy(KernelVariables.currentdir + cmdCI_args[1], cmdCI_args[2]);
                 }
                 else
                 {
                     Console.WriteLine("File does not exist");
                 }
             }
-            else if (command.StartsWith("cd"))
+            else if (command == "cd ..")
             {
-                fsfunc.cd(cmd_args[1]);
+                fsfunc.cd_dot_dot();
             }
-            if (command == "cd ..")
+            else if (command.StartsWith("cd "))
             {
-                try
-                {
-                    if (KernelVariables.currentdir == KernelVariables.rootdir)
-                    {
-                        Console.WriteLine("Cannot go up any more levels!");
-                    }
-                    else
-                    {
-                        var pos = KernelVariables.currentdir.LastIndexOf('\\');
-                        if (pos >= 0)
-                        {
-                            KernelVariables.currentdir = KernelVariables.currentdir.Substring(0, pos) + @"\";
-                        }
-                        /*                        
-                        var dir = FSfunc.fs.GetDirectory(Kernel.current_dir);
-                        string p = dir.mParent.mName;
-                        if (!string.IsNullOrEmpty(p))
-                        {
-                            Kernel.current_dir = p;
-                        }
-                        */
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Failed to change directory!");
-                    //ErrorHandler.Init(0, ex.Message, false, "");
-                }
+                fsfunc.cd(cmdCI.Remove(0, 3));
             }
             else if (command == "dir")
             {
@@ -170,29 +150,33 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command == "shutdown")
             {
-                Console.WriteLine("Dictionaries not yet implemented!");
-                //usr_vars.saveVars();
+                //Console.WriteLine("Dictionaries not yet implemented!");
+                usr_vars.saveVars();
                 userACPI.Shutdown();
             }
             else if (command == "reboot")
             {
-                Console.WriteLine("Dictionaries not yet implemented!");
-                //usr_vars.saveVars();
+                //Console.WriteLine("Dictionaries not yet implemented!");
+                usr_vars.saveVars();
                 userACPI.Reboot();
             }
             else if (command == "savevars")
             {
-                Console.WriteLine("Dictionaries not yet implemented!");
-                //usr_vars.saveVars();
+                //Console.WriteLine("Dictionaries not yet implemented!");
+                usr_vars.saveVars();
             }
             else if (command == "loadvars")
             {
-                Console.WriteLine("Dictionaries not yet implemented!");
-                //usr_vars.readVars();
+                //Console.WriteLine("Dictionaries not yet implemented!");
+                usr_vars.readVars();
             }
             else if (command.StartsWith("help "))
             {
                 Command_db.Commands.GetHelp.Specific(cmd_args[1]);
+            }
+            else if (command.StartsWith("rm "))
+            {
+                fsfunc.del(cmdCI.Remove(0, 3));
             }
             else if (command == "")
             {
@@ -200,7 +184,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else
             {
-                Console.WriteLine("Invalid command");
+                Console.WriteLine("Invalid command: " + cmdCI);
             }
         }
     }

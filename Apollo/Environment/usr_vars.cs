@@ -10,16 +10,23 @@ namespace Apollo
     {
         public static string varsfile = KernelVariables.rootdir + "vars.sys";
         public static Dictionary<string, string> usr_var = new Dictionary<string, string>();
-        public static void store(string var, string contents)
+        public static void store(string variable, string contents)
         {
-            usr_var.Add(var, contents);
+            if (usr_var.ContainsKey(variable))
+            {
+                Console.WriteLine("Key already exists!");
+            }
+            else
+            {
+                usr_var.Add(variable, contents);
+            }
         }
-        public static string retrieve(string var)
+        public static string retrieve(string variable)
         {
             
-            if (usr_var.ContainsKey(var))
+            if (usr_var.ContainsKey(variable))
             {
-                string content = usr_var[var];
+                string content = usr_var[variable];
                 return content;
             }
             else
@@ -32,12 +39,12 @@ namespace Apollo
             try
             {
                 string[] vars = File.ReadAllLines(varsfile);
-                foreach (string var in vars)
+                foreach (string variable in vars)
                 {
-                    string[] varcontent = var.Split(' ');
-                    if (!usr_var.ContainsKey(var))
+                    string[] varcontent = variable.Split(' ');
+                    if (!usr_var.ContainsKey(variable))
                     {
-                        usr_var.Add(var, varcontent[1]);
+                        usr_var.Add(variable, varcontent[1]);
                     }
                     else
                     {
@@ -58,7 +65,7 @@ namespace Apollo
             {
                 foreach (var entry in usr_var)
                 {
-                    file.WriteLine("{0} {1}", entry.Key, entry.Value);
+                    file.WriteLine("\n{0} {1}", entry.Key, entry.Value);
                 }
             }
         }

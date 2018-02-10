@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using AIC_Framework;
 
-namespace Apollo.Applications
+namespace Apollo.Applications.Commands
 {
-    class cocoapadViewer
+    public class TextViewer : Command
     {
-        private static void DrawScreen()
+        public string cmdName;
+        public string help;
+        public static void Help()
         {
-            AConsole.Fill(ConsoleColor.Blue);
-            Console.CursorTop = 0;
-            AConsole.WriteLineEx(" Cocoapad Viewer ", ConsoleColor.White, ConsoleColor.Gray, true, false);
-            Console.BackgroundColor = ConsoleColor.Blue;
-            Console.CursorTop = 3;
+            Console.WriteLine("view <file>      Prints the contents of a file onto the screen.");
+            Console.WriteLine("Cocoapad Viewer is a file viewer that provides the functionality to view text stored in .txt and other files.");
         }
-        public static void ViewFile(string file)
+        public static void Run(string file)
         {
             DrawScreen();
             try
@@ -41,6 +38,14 @@ namespace Apollo.Applications
                 Console.WriteLine(ex.Message);
             }
             Environment.env_vars.PressAnyKey();
+        }
+        private static void DrawScreen()
+        {
+            AConsole.Fill(ConsoleColor.Blue);
+            Console.CursorTop = 0;
+            AConsole.WriteLineEx(" Cocoapad Viewer ", ConsoleColor.White, ConsoleColor.Gray, true, false);
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.CursorTop = 3;
         }
     }
 }

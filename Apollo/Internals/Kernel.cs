@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Sys = Cosmos.System;
 using System.IO;
-using Apollo.Command_db;
 using Cosmos.System.FileSystem.VFS;
 using AIC_Framework;
 
@@ -11,17 +10,23 @@ namespace Apollo
 {
     public class Kernel : Sys.Kernel
     {
-        Sys.FileSystem.CosmosVFS fs;
+        public static Sys.FileSystem.CosmosVFS fs = new Sys.FileSystem.CosmosVFS();
 
         protected override void BeforeRun()
         {
-            fs = new Sys.FileSystem.CosmosVFS();
             VFSManager.RegisterVFS(fs);
             fs.Initialize();
             Console.Clear();
             //Bootscreen.Show("Launching Apollo OS...", Bootscreen.Effect.Matrix, ConsoleColor.Red, 1);
             Console.Clear();
-            Init.Start();
+            if (!Directory.Exists(Environment.KernelVariables.devdir))
+            {
+                Init.Start();
+            }
+            else
+            {
+                Environment.KernelVariables.user = File.ReadAllText(Environment.KernelVariables.usrdir + @"\" + "usr.sys");
+            }
             Console.WriteLine("Welcome to Apollo");
             if (!Directory.Exists(Environment.KernelVariables.bindir))
             {

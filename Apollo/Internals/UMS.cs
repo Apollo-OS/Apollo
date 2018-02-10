@@ -23,6 +23,16 @@ namespace Apollo.Internals
             Directory.CreateDirectory(userdir);
             File.WriteAllText(userdir + @"\" + "pass.sys", this.Password);
             File.WriteAllText(userdir + @"\" + "usr_id.sys", this.acc_id.ToString());
+            if (!File.Exists(Environment.KernelVariables.usrdir + @"\" + "usr.sys"))
+            {
+                File.WriteAllText(Environment.KernelVariables.usrdir + @"\" + "usr.sys", this.Username);
+            }
+            else
+            {
+                File.Delete(Environment.KernelVariables.usrdir + @"\" + "usr.sys");
+                File.WriteAllText(Environment.KernelVariables.usrdir + @"\" + "usr.sys", this.Username);
+            }
+            
         }
     }
 }

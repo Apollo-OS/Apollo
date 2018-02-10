@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using AIC_Framework;
 using System.IO;
+using AIC_Framework;
 
-namespace Apollo.Applications
+namespace Apollo.Applications.Commands
 {
     /// <summary>
     /// Cocoapad Editor class
     /// contains methods needed for the editor to function
     /// </summary>
-    class cocoapadEditor
+    class TextEditor : Command
     {
         /// <summary>
         /// The current text inside the editor is stored in a string
@@ -87,5 +85,12 @@ namespace Apollo.Applications
             }
             AConsole.Fill(ConsoleColor.Black);
         }
+        public static void Help()
+        {
+            Console.WriteLine("edit <file>      Launches the text editor");
+            Console.WriteLine("Cocoapad Text Editor is a simple file editor that can be used\nto edit text and other types of text file.");
+        }
+        public string cmdName = "TextEditor";
+        string help = "";
     }
 }

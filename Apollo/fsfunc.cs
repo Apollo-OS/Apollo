@@ -8,13 +8,23 @@ namespace Apollo
 {
     public class fsfunc
     {
-        public static void mkdir(string dirname)
+        public static void mkdir(string dirname, bool issys)
         {
             try
             {
-                if (!Directory.Exists(dirname))
+                if (issys == true)
                 {
-                    Directory.CreateDirectory(dirname);
+                    if (!Directory.Exists(dirname))
+                    {
+                        Directory.Exists(dirname);
+                    }
+                }
+                else
+                {
+                    if (!Directory.Exists(dirname))
+                    {
+                        Directory.CreateDirectory(KernelVariables.currentdir + @"\" + dirname);
+                    }
                 }
             }
             catch
@@ -39,33 +49,86 @@ namespace Apollo
                 Console.WriteLine("file does not exist");
             }
         }
+        public static void cd_dot_dot()
+        {
+            try
+            {
+                if (KernelVariables.currentdir == KernelVariables.rootdir)
+                {
+                    Console.WriteLine("Cannot go up any more levels!");
+                }
+                else
+                {
+                    //var pos = KernelVariables.currentdir.LastIndexOf('\\');
+                    //if (pos >= 0)
+                    //{
+                        //KernelVariables.currentdir = KernelVariables.currentdir.Substring(0, pos) + @"\";
+                    //}
+                                            
+                    var dir = Kernel.fs.GetDirectory(Environment.KernelVariables.currentdir);
+                    string p = dir.mParent.mName;
+                    if (!string.IsNullOrEmpty(p))
+                    {
+                        Environment.KernelVariables.currentdir = p;
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to change directory!");
+                //ErrorHandler.Init(0, ex.Message, false, "");
+            }
+        }
         public static void cd(string input)
         {
             string path = input;
             if (Directory.Exists(KernelVariables.currentdir + path))
             {
-                KernelVariables.currentdir = KernelVariables.currentdir + path;
+                KernelVariables.currentdir = KernelVariables.currentdir + @"\" + path;
             }
             else if (Directory.Exists(path))
             {
-                KernelVariables.currentdir = path;
+                KernelVariables.currentdir = path + @"\";
             }
             else
             {
-                Console.WriteLine("Folder does not exist " + KernelVariables.currentdir + "/" + path);
+                Console.WriteLine("Folder does not exist " + KernelVariables.currentdir + @"\" + path);
             }
         }
-        public static void deldir(string dirname)
+        public static void del(string filename)
         {
-            Directory.Delete(KernelVariables.currentdir + "/" + dirname);
-        }
-        public static void delfile(string filename)
-        {
-            File.Delete(KernelVariables.currentdir + "/" + filename);
+            if (File.Exists(filename))
+            {
+                try
+                {
+                    File.Delete(KernelVariables.currentdir + @"\" + filename);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else if (Directory.Exists(filename))
+            {
+                try
+                {
+                    Directory.Delete(KernelVariables.currentdir + @"\" + filename);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("File/Directory doesn't exist!");
+            }
+
         }
         public static void dir()
         {
-            foreach (var dir in Directory.GetDirectories(KernelVariables.rootdir))
+            foreach (var dir in Directory.GetDirectories(KernelVariables.currentdir))
             {
                 try
                 {
@@ -78,13 +141,13 @@ namespace Apollo
                     Console.WriteLine("Failed to retrieve directories");
                 }
             }
-            foreach (var dir in Directory.GetFiles(KernelVariables.rootdir))
+            foreach (var file in Directory.GetFiles(KernelVariables.currentdir))
             {
                 try
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    string[] sp = dir.Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries);
-                    Console.WriteLine(sp[sp.Length - 1] + "\t" + dir);
+                    string[] sp = file.Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries);
+                    Console.WriteLine(sp[sp.Length - 1] + "\t" + file);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
                 catch

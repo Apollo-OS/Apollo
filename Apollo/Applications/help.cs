@@ -58,8 +58,6 @@ namespace Apollo.Command_db.Commands
         }
         public static void AppHelp()
         {
-            Console.WriteLine("view <file>      Prints the contents of a file onto the screen.");
-            Console.WriteLine("edit <file>      Launches the text editor");
             Console.WriteLine("miv              Launches the MIV advanced text editor");
             Console.WriteLine("echo             Prints text to the console");
             Console.WriteLine("run <file>       Executes the script passed as <file>");
