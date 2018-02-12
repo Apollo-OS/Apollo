@@ -7,7 +7,6 @@ using Apollo.Command_db;
 using Cosmos.System.FileSystem.VFS;
 using AIC_Framework;
 using Apollo.Environment;
-using Apollo.Applications;
 
 namespace Apollo
 {
@@ -54,31 +53,13 @@ namespace Apollo
             }
             else if (command == "cowsay")
             {
-                Cowsay.Cow("Say something using 'Cowsay <message>'");
+                Apps.Cowsay.Cow("Say something using 'Cowsay <message>'");
                 Console.WriteLine(@"You can also use 'cowsay -f' tux for penguin, cow for cow and 
 sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command.StartsWith("cowsay"))
             {
-                if (cmd_args[1] == "-f")
-                {
-                    if (cmd_args[2] == "cow")
-                    {
-                        Cowsay.Cow(cmdCI.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
-                    }
-                    else if (cmd_args[2] == "tux")
-                    {
-                        Cowsay.Tux(cmdCI.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
-                    }
-                    else if (cmd_args[2] == "sodomized-sheep")
-                    {
-                        Cowsay.SodomizedSheep(cmdCI.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
-                    }
-                }
-                else
-                {
-                    Cowsay.Cow(command.Substring(7));
-                }
+                Apps.Cowsay.Run(cmdCI_args);
             }
             else if (command.StartsWith("$"))
             {
@@ -93,12 +74,12 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
                 }
                 else
                 {
-                    Mdscript.Execute(KernelVariables.currentdir + cmdCI_args[1]);
+                    Apps.ApolloScript.Run(KernelVariables.currentdir + cmdCI_args[1]);
                 }
             }
             else if (command.StartsWith("edit "))
             {
-                Applications.Commands.TextEditor.Run(cmdCI_args[1]);
+                Apps.TextEditor.Run(cmdCI_args[1]);
             }
             else if (command == "edit")
             {
@@ -111,15 +92,15 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command.StartsWith("cv "))
             {
-                Applications.Commands.TextViewer.Run(cmdCI_args[1]);
+                Apps.TextViewer.Run(cmdCI_args[1]);
             }
             else if (command == "miv")
             {
-                MIV.StartMIV();
+                Apps.MIV.Run();
             }
             else if (command.StartsWith("miv "))
             {
-                MIV.StartMIV(cmdCI.Remove(0, 4));
+                Apps.MIV.Run(cmdCI.Remove(0, 4));
             }
             else if (command.StartsWith("copy "))
             {
@@ -144,9 +125,13 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             {
                 fsfunc.dir();
             }
+            else if (command.StartsWith("dir "))
+            {
+                fsfunc.dir(cmdCI_args[1]);
+            }
             else if (command == "help")
             {
-                Command_db.Commands.GetHelp.Full();
+                Apps.Help.Run();
             }
             else if (command == "shutdown")
             {
@@ -172,7 +157,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command.StartsWith("help "))
             {
-                Command_db.Commands.GetHelp.Specific(cmd_args[1]);
+                Apps.Help.Specific(cmd_args[1]);
             }
             else if (command.StartsWith("rm "))
             {

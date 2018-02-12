@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using AIC_Framework;
 
-namespace Apollo.Applications.Commands
+namespace Apollo.Apps
 {
     /// <summary>
     /// Cocoapad Editor class
@@ -85,12 +85,13 @@ namespace Apollo.Applications.Commands
             }
             AConsole.Fill(ConsoleColor.Black);
         }
-        public static void Help()
+        public new static void Help()
         {
-            Console.WriteLine("edit <file>      Launches the text editor");
-            Console.WriteLine("Cocoapad Text Editor is a simple file editor that can be used\nto edit text and other types of text file.");
+            Console.WriteLine(help);
+            Console.WriteLine("Cocoapad Text Editor is a simple file editor that can ");
+            Console.WriteLine("be used to edit text and other types of text file.");
         }
-        public string cmdName = "TextEditor";
-        string help = "";
+        public new static string cmdName = "edit";
+        public new static string help = cmdName + " <file>      Launches the text editor";
     }
 }

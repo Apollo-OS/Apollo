@@ -4,16 +4,17 @@ using System.Text;
 using System.IO;
 using AIC_Framework;
 
-namespace Apollo.Applications.Commands
+namespace Apollo.Apps
 {
     public class TextViewer : Command
     {
-        public string cmdName;
-        public string help;
-        public static void Help()
+        public new string cmdName = "view";
+        public new static string help = "view <file>      Prints the contents of a file onto the screen.";
+        public new static void Help()
         {
-            Console.WriteLine("view <file>      Prints the contents of a file onto the screen.");
-            Console.WriteLine("Cocoapad Viewer is a file viewer that provides the functionality to view text stored in .txt and other files.");
+            Console.WriteLine(help);
+            Console.WriteLine("Cocoapad Viewer is a file viewer that provides the functionality");
+            Console.WriteLine("to view text stored in .txt and other files.");
         }
         public static void Run(string file)
         {

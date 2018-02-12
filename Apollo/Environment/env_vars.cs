@@ -28,7 +28,9 @@ namespace Apollo.Environment
         public static string user;
         public static string rootdir = @"0:\";
         public static string currentdir = rootdir;
-        public static string etcdir = rootdir + @"\" + "etc";
+        public static string etcdir = rootdir 
+            //+ @"\" 
+            + "etc";
         public static string bindir = rootdir + @"\" + "bin";
         public static string sbindir = rootdir + @"\" + "sbin";
         public static string procdir = rootdir + @"\" + "proc";

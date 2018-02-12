@@ -2,21 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Apollo.Applications
+namespace Apollo.Apps
 {
     /// <summary>
     /// A must-have for any command line operating system
     /// Doesn't have the other characters from the actual cowsay,
     /// but it'll do for now :P
     /// </summary>
-    public class Cowsay
+    public class Cowsay : Command
     {
+        public static void Run(string[] args)
+        {
+            if (args[1] == "-f")
+            {
+                if (args[2] == "cow")
+                {
+                    Cowsay.Cow(args[0].Remove(0, args[0].Length + args[1].Length + args[2].Length + 3));
+                }
+                else if (args[2] == "tux")
+                {
+                    Cowsay.Tux(args[0].Remove(0, args[0].Length + args[1].Length + args[2].Length + 3));
+                }
+                else if (args[2] == "sodomized-sheep")
+                {
+                    Cowsay.SodomizedSheep(args[0].Remove(0, args[0].Length + args[1].Length + args[2].Length + 3));
+                }
+            }
+            else
+            {
+                Cowsay.Cow(args[0].Substring(7));
+            }
+        }
+
         /// <summary>
         /// Prints the argument passed to 'cowsay' into the
         /// speech bubble said by the cow
         /// </summary>
         /// <param name="args"></param>
-        public static void print(string args)
+        private static void print(string args)
         {
             int length = args.Length;
             for (int i = 1; i <= length; i++)
@@ -44,7 +67,7 @@ namespace Apollo.Applications
                 ||----w |
                 ||     ||");
         }
-        public static void Tux(string args)
+        private static void Tux(string args)
         {
             Console.Write("/--"); print(args); Console.WriteLine(@"--\");
             Console.WriteLine("|- " + args + @" -|");
@@ -61,7 +84,7 @@ namespace Apollo.Applications
            \___)=(___/
 ");
         }
-        public static void SodomizedSheep (string args)
+        private static void SodomizedSheep (string args)
         {
             Console.Write("/--"); print(args); Console.WriteLine(@"--\");
             Console.WriteLine("|- " + args + @" -|");

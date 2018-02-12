@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apollo.Command_db.Commands
+namespace Apollo.Apps
 {
     /// <summary>
     /// Help class, called by mshell
     /// </summary>
-    public class GetHelp
+    public class Help : Command
     {
-        //public new string func_name = "help";
-        //public new string cmd_name = "Help";
-        /*
+         /*
          * A very primitive paging system (not RAM paging, I mean manpages etc...)
          * Tidied up a bit, might avoid the text-spilling-onto-next-line issue but certainly doesn't eliminate it
          * That's an issue which needs sorting, probs leave it until we go .NET Core
@@ -24,6 +22,10 @@ namespace Apollo.Command_db.Commands
         /// </summary>
         /// <param name="pageno"></param>
         /// 
+        public new static void Run()
+        {
+            Run("full");
+        }
         public static void Run(string args)
         {
             if (args == "1" || args == "apps")
@@ -42,39 +44,23 @@ namespace Apollo.Command_db.Commands
             {
                 Full();
             }
+            else if (args == "help")
+            {
+                Usage();
+            }
             else if (args == "specific")
             {
                 Console.WriteLine("Enter specific command:");
                 string topic = Console.ReadLine();
-                GetHelp.Specific(topic);
+                Apps.Help.Specific(topic);
+            }
+            else
+            {
+                Full();
             }
         }
-        public static void SysHelp()
-        {
-            Console.WriteLine("reboot           Reboots the system");
-            Console.WriteLine("shutdown         Closes applications and powers down the system");
-            Console.WriteLine("getram           Gets the amount of system RAM in megabytes");
-            Console.WriteLine("panic            Starts a harmless kernel panic");
-        }
-        public static void AppHelp()
-        {
-            Console.WriteLine("miv              Launches the MIV advanced text editor");
-            Console.WriteLine("echo             Prints text to the console");
-            Console.WriteLine("run <file>       Executes the script passed as <file>");
-            Console.WriteLine("devenv <file>    Launches the Medli Application IDE");
-            Console.WriteLine("launch <file>    Launches the application ending in .ma");
-            Console.WriteLine("cowsay <msg>     Launches the cowsay application");
-        }
-        public static void FSHelp()
-        {
-            Console.WriteLine("echo             Prints text onto the console");
-            Console.WriteLine("mkdir            Makes a directory");
-            Console.WriteLine("dir              Prints a list of directories in the current directory");
-            Console.WriteLine("cd               Changes the current directory");
-            Console.WriteLine("mv <src> <dest>  Moves the source file to the destination");
-            Console.WriteLine("clear            Clears the screen");
-            Console.WriteLine("getVol           Displays a list of detected disk volumes");
-        }
+        public new static string cmdName = "help";
+        public new static string help = cmdName + " <args>\tretrieve help on a specific program or function";
         public static void Pages(int pageno)
         {
             if (pageno == 1)
@@ -107,6 +93,39 @@ namespace Apollo.Command_db.Commands
                 Full();
             }
         }
+
+
+        public static void Usage()
+        {
+            Console.WriteLine(help);
+            Console.WriteLine("'Help' is a simple utiliy that is used to\nknow what commands are available to use.");
+        }
+        public static void SysHelp()
+        {
+            Console.WriteLine("reboot           Reboots the system");
+            Console.WriteLine("shutdown         Closes applications and powers down the system");
+            Console.WriteLine("getram           Gets the amount of system RAM in megabytes");
+            Console.WriteLine("panic            Starts a harmless kernel panic");
+        }
+        public static void AppHelp()
+        {
+            Console.WriteLine("miv              Launches the MIV advanced text editor");
+            Console.WriteLine("echo             Prints text to the console");
+            Console.WriteLine("run <file>       Executes the script passed as <file>");
+            Console.WriteLine("devenv <file>    Launches the Medli Application IDE");
+            Console.WriteLine("launch <file>    Launches the application ending in .ma");
+            Console.WriteLine("cowsay <msg>     Launches the cowsay application");
+        }
+        public static void FSHelp()
+        {
+            Console.WriteLine("echo             Prints text onto the console");
+            Console.WriteLine("mkdir            Makes a directory");
+            Console.WriteLine("dir              Prints a list of directories in the current directory");
+            Console.WriteLine("cd               Changes the current directory");
+            Console.WriteLine("mv <src> <dest>  Moves the source file to the destination");
+            Console.WriteLine("clear            Clears the screen");
+            Console.WriteLine("getVol           Displays a list of detected disk volumes");
+        }
         /// <summary>
         /// prints out all help pages after each other
         /// </summary>
@@ -135,17 +154,18 @@ namespace Apollo.Command_db.Commands
             {
                 Console.WriteLine("cowsay <text>\tA little *nix easter egg ;)");
             }
-            else if (topic == "cv")
+            else if (topic == "edit")
             {
-                Console.WriteLine("cv <file>\tPrints the contents of a file onto the screen.");
+                Apps.TextEditor.Help();
             }
-            else if (topic == "cp")
+            else if (topic == "view")
             {
-                Console.WriteLine("cp <file>\tLaunches the text editor");
+                Apps.TextViewer.Help();
             }
             else if (topic == "miv")
             {
-                Console.WriteLine("miv\tLaunches the MIV advanced text editor");
+                Apps.MIV.Help();
+                Console.WriteLine("");
             }
             else if (topic == "reboot")
             {
@@ -154,10 +174,6 @@ namespace Apollo.Command_db.Commands
             else if (topic == "shutdown")
             {
                 Console.WriteLine("shutdown\tCloses applications and powers down the system.");
-            }
-            else if (topic == "shell2")
-            {
-                Console.WriteLine("shell2\tLaunches the new shell (W.I.P)");
             }
             else if (topic == "clear")
             {

@@ -16,7 +16,7 @@ namespace Apollo
                 {
                     if (!Directory.Exists(dirname))
                     {
-                        Directory.Exists(dirname);
+                        Directory.CreateDirectory(dirname);
                     }
                 }
                 else
@@ -102,7 +102,7 @@ namespace Apollo
             {
                 try
                 {
-                    File.Delete(KernelVariables.currentdir + @"\" + filename);
+                    File.Delete(KernelVariables.currentdir + filename);
                 }
                 catch (Exception ex)
                 {
@@ -113,7 +113,7 @@ namespace Apollo
             {
                 try
                 {
-                    Directory.Delete(KernelVariables.currentdir + @"\" + filename);
+                    Directory.Delete(KernelVariables.currentdir + filename);
                 }
                 catch (Exception ex)
                 {
@@ -128,33 +128,32 @@ namespace Apollo
         }
         public static void dir()
         {
-            foreach (var dir in Directory.GetDirectories(KernelVariables.currentdir))
+            dir(KernelVariables.currentdir);
+        }
+        public static void dir(string path)
+        {
+            try
             {
-                try
+                foreach (var dir in Directory.GetDirectories(path))
                 {
+
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("<Directory>\t" + dir);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                catch
-                {
-                    Console.WriteLine("Failed to retrieve directories");
-                }
-            }
-            foreach (var file in Directory.GetFiles(KernelVariables.currentdir))
-            {
-                try
+                foreach (var file in Directory.GetFiles(path))
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     string[] sp = file.Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries);
                     Console.WriteLine(sp[sp.Length - 1] + "\t" + file);
                     Console.ForegroundColor = ConsoleColor.White;
-                }
-                catch
-                {
-                    Console.WriteLine("Failed to retrieve files in directory");
+
                 }
             }
-        }
+            catch
+            {
+                Console.WriteLine("Failed to retrieve directories/files");
+            }
+    }
     }
 }

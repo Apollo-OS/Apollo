@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
-namespace Apollo.Applications
+namespace Apollo.Apps
 {
-    class MIV
+    class MIV : Command
     {
+        public new static string cmdName = "miv";
+        public new static string help = cmdName + "\tLaunches the MIV advanced text editor";
+        public new static void Help()
+        {
+            Console.WriteLine(help);
+            Console.WriteLine("MIV is an advanced text editor that provides minimalist");
+            Console.WriteLine("functionality similar to the VI text editor.");
+        }
+
+        #region methods
         public static void printMIVStartScreen()
         {
             Console.Clear();
@@ -270,7 +278,7 @@ namespace Apollo.Applications
         {
             for (int i = 0; i < time; i++) ;
         }
-        public static void StartMIV(string filename)
+        public static void Run(string filename)
         {
             try
             {
@@ -303,7 +311,7 @@ namespace Apollo.Applications
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey(true);
         }
-        public static void StartMIV()
+        public static void Run()
         {
             Console.WriteLine("Enter file's filename to open:");
             Console.WriteLine("If the specified file does not exist, it will be created.");
@@ -347,5 +355,6 @@ namespace Apollo.Applications
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey(true);
         }
+        #endregion
     }
 }
