@@ -8,9 +8,9 @@ namespace Apollo
 {
     class usr_vars
     {
-        public static string varsfile = KernelVariables.rootdir + "vars.sys";
+        public static string varsfile = KernelVariables.bindir + "vars.sys";
         public static Dictionary<string, string> usr_var = new Dictionary<string, string>();
-        public static void store(string variable, string contents)
+        public static void Store(string variable, string contents)
         {
             if (usr_var.ContainsKey(variable))
             {
@@ -21,7 +21,7 @@ namespace Apollo
                 usr_var.Add(variable, contents);
             }
         }
-        public static string retrieve(string variable)
+        public static string Retrieve(string variable)
         {
             
             if (usr_var.ContainsKey(variable))
@@ -34,7 +34,15 @@ namespace Apollo
                 return "Value not found!";
             }
         }
-        public static void readVars()
+        public static void PrintVars()
+        {
+            foreach (var key in usr_vars.usr_var)
+            {
+                Console.Write("Key:" + key.Key);
+                Console.WriteLine(" - Value: " + key.Value);
+            }
+        }
+        public static void ReadVars()
         {
             try
             {
@@ -59,7 +67,7 @@ namespace Apollo
             }
             
         }
-        public static void saveVars()
+        public static void SaveVars()
         {
             using (StreamWriter file = new StreamWriter(File.OpenWrite(varsfile)))
             {

@@ -8,6 +8,7 @@ namespace Apollo
 {
     public class fsfunc
     {
+        public static string CurrentDirectory = Directory.GetCurrentDirectory();
         public static void mkdir(string dirname, bool issys)
         {
             try
@@ -65,11 +66,12 @@ namespace Apollo
                         //KernelVariables.currentdir = KernelVariables.currentdir.Substring(0, pos) + @"\";
                     //}
                                             
-                    var dir = Kernel.fs.GetDirectory(Environment.KernelVariables.currentdir);
+                    var dir = Kernel.fs.GetDirectory(KernelVariables.currentdir);
                     string p = dir.mParent.mName;
                     if (!string.IsNullOrEmpty(p))
                     {
-                        Environment.KernelVariables.currentdir = p;
+                        KernelVariables.currentdir = p;
+                        Directory.SetCurrentDirectory(p);
                     }
                     
                 }
@@ -86,17 +88,20 @@ namespace Apollo
             if (Directory.Exists(KernelVariables.currentdir + path))
             {
                 KernelVariables.currentdir = KernelVariables.currentdir + @"\" + path;
+                string cd = Directory.GetCurrentDirectory();
+                Directory.SetCurrentDirectory(cd + path);
             }
             else if (Directory.Exists(path))
             {
-                KernelVariables.currentdir = path + @"\";
+                KernelVariables.currentdir = path;
+                Directory.SetCurrentDirectory(path);
             }
             else
             {
                 Console.WriteLine("Folder does not exist " + KernelVariables.currentdir + @"\" + path);
             }
         }
-        public static void del(string filename)
+        public static void del(string filename, bool recursive)
         {
             if (File.Exists(filename))
             {
@@ -104,20 +109,31 @@ namespace Apollo
                 {
                     File.Delete(KernelVariables.currentdir + filename);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Failed to delete file!");
                 }
             }
             else if (Directory.Exists(filename))
             {
+                if (recursive == true)
+                {
+                    try
+                    {
+                        Directory.Delete(filename, true);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Failed to recursively delete directory!");
+                    }
+                }
                 try
                 {
                     Directory.Delete(KernelVariables.currentdir + filename);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Failed to delete directory!");
                 }
             }
             else
@@ -132,22 +148,34 @@ namespace Apollo
         }
         public static void dir(string path)
         {
+
+            string[] directories = Directory.GetDirectories(path);
+            string[] files = Directory.GetFiles(path);
+            //Array.Sort(directories);
+            //Array.Sort(files);
             try
             {
-                foreach (var dir in Directory.GetDirectories(path))
+                Console.WriteLine("-: Directories :-");
+                foreach (string dir in directories)
                 {
-
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("<Directory>\t" + dir);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                foreach (var file in Directory.GetFiles(path))
+            }
+            catch
+            {
+                Console.WriteLine("Failed to retrieve directories/files");
+            }
+            try
+            {
+                Console.WriteLine("-: Files :-");
+                foreach (string file in files)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     string[] sp = file.Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries);
                     Console.WriteLine(sp[sp.Length - 1] + "\t" + file);
                     Console.ForegroundColor = ConsoleColor.White;
-
                 }
             }
             catch

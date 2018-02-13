@@ -25,7 +25,7 @@ namespace Apollo
             }
             else if (command.StartsWith("echo $"))
             {
-                Console.WriteLine(usr_vars.retrieve(cmdCI.Remove(0, 6)));
+                Console.WriteLine(usr_vars.Retrieve(cmdCI.Remove(0, 6)));
             }
             else if (cmdline.StartsWith("echo "))
             {
@@ -61,10 +61,14 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             {
                 Apps.Cowsay.Run(cmdCI_args);
             }
+            else if (command == "print vars")
+            {
+                
+            }
             else if (command.StartsWith("$"))
             {
                 //Console.WriteLine("Dictionaries not yet implemented!");
-                usr_vars.store(cmdCI_args[0].Remove(0, 1), cmdCI_args[1]);
+                usr_vars.Store(cmdCI_args[0].Remove(0, 1), cmdCI_args[1]);
             }
             else if (command.StartsWith("run "))
             {
@@ -136,32 +140,43 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             else if (command == "shutdown")
             {
                 //Console.WriteLine("Dictionaries not yet implemented!");
-                usr_vars.saveVars();
+                usr_vars.SaveVars();
                 userACPI.Shutdown();
             }
             else if (command == "reboot")
             {
                 //Console.WriteLine("Dictionaries not yet implemented!");
-                usr_vars.saveVars();
+                usr_vars.SaveVars();
                 userACPI.Reboot();
             }
             else if (command == "savevars")
             {
                 //Console.WriteLine("Dictionaries not yet implemented!");
-                usr_vars.saveVars();
+                usr_vars.SaveVars();
             }
             else if (command == "loadvars")
             {
                 //Console.WriteLine("Dictionaries not yet implemented!");
-                usr_vars.readVars();
+                usr_vars.ReadVars();
             }
             else if (command.StartsWith("help "))
             {
                 Apps.Help.Specific(cmd_args[1]);
             }
+            else if (command == "pause")
+            {
+                env_vars.PressAnyKey();
+            }
             else if (command.StartsWith("rm "))
             {
-                fsfunc.del(cmdCI.Remove(0, 3));
+                if (cmd_args[1] == "-r")
+                {
+                    fsfunc.del(cmdCI.Remove(0, 6), true);
+                }
+                else
+                {
+                    fsfunc.del(cmdCI.Remove(0, 3), false);
+                }
             }
             else if (command == "")
             {
