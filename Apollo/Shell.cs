@@ -119,7 +119,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command == "cd ..")
             {
-                fsfunc.cd_dot_dot();
+                fsfunc.CDP();
             }
             else if (command.StartsWith("cd "))
             {

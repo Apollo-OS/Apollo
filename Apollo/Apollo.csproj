@@ -9,7 +9,7 @@
         <DebugEnabled>False</DebugEnabled>
         <DebugMode>Source</DebugMode>
         <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
-        <OutputPath>bin\Debug\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\</OutputPath>
+        <OutputPath>bin\Debug\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\</OutputPath>
         <VMware_StackCorruptionDetectionEnabled>True</VMware_StackCorruptionDetectionEnabled>
         <VMware_StackCorruptionDetectionLevel>MethodFooters</VMware_StackCorruptionDetectionLevel>
         <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>

@@ -8,7 +8,7 @@ namespace Apollo
 {
     public class fsfunc
     {
-        public static string CurrentDirectory = Directory.GetCurrentDirectory();
+        //public static string CurrentDirectory = Directory.GetCurrentDirectory();
         public static void mkdir(string dirname, bool issys)
         {
             try
@@ -50,7 +50,7 @@ namespace Apollo
                 Console.WriteLine("file does not exist");
             }
         }
-        public static void cd_dot_dot()
+        public static void CDP()
         {
             try
             {

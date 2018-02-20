@@ -8,7 +8,7 @@ namespace Apollo
 {
     class usr_vars
     {
-        public static string varsfile = KernelVariables.bindir + "vars.sys";
+        public static string varsfile = KernelVariables.bindir + @"\" + "vars.sys";
         public static Dictionary<string, string> usr_var = new Dictionary<string, string>();
         public static void Store(string variable, string contents)
         {
@@ -69,13 +69,22 @@ namespace Apollo
         }
         public static void SaveVars()
         {
-            using (StreamWriter file = new StreamWriter(File.OpenWrite(varsfile)))
+            if (File.Exists(varsfile))
             {
-                foreach (var entry in usr_var)
+                using (StreamWriter file = new StreamWriter(File.OpenWrite(varsfile)))
                 {
-                    file.WriteLine("\n{0} {1}", entry.Key, entry.Value);
+                    foreach (var entry in usr_var)
+                    {
+                        file.WriteLine("\n{0} {1}", entry.Key, entry.Value);
+                    }
                 }
             }
+            else
+            {
+                Console.WriteLine("Cannot find the file that stores the variable file...");
+                Console.WriteLine("The system will now ");
+            }
+            
         }
     }
 }
