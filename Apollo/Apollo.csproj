@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.0</TargetFramework>
-        <BinFormat>ELF</BinFormat>
+        <BinFormat>Bin</BinFormat>
         <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
         <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
         <Deployment>ISO</Deployment>
@@ -52,6 +52,7 @@
         <HyperV_OutputPath>bin\Debug\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\</HyperV_OutputPath>
         <HyperV_EnableGDB>False</HyperV_EnableGDB>
         <HyperV_StartCosmosGDB>False</HyperV_StartCosmosGDB>
+        <DebugEnabled>False</DebugEnabled>
     </PropertyGroup>
 
     <PropertyGroup>
