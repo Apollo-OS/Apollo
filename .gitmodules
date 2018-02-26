@@ -1,0 +1,3 @@
+[submodule "AIC"]
+	path = AIC
+	url = https://github.com/Apollo-OS/AIC-Framework
