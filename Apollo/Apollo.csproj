@@ -6,7 +6,7 @@
         <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
         <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
         <Deployment>ISO</Deployment>
-        <DebugEnabled>False</DebugEnabled>
+        <EnableDebug>False</EnableDebug>
         <DebugMode>Source</DebugMode>
         <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
         <OutputPath>bin\Debug\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\netcoreapp2.0\</OutputPath>
