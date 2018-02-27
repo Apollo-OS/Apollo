@@ -6,7 +6,7 @@ using Apollo.Environment;
 
 namespace Apollo
 {
-    class usr_vars
+    public class usr_vars
     {
         public static string varsfile = KernelVariables.bindir + @"\" + "vars.sys";
         public static Dictionary<string, string> usr_var = new Dictionary<string, string>();

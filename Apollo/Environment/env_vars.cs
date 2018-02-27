@@ -49,7 +49,7 @@ namespace Apollo.Environment
             systemdirectory.Add(devdir);
         }
     }
-    class env_vars
+    public class env_vars
     {
         public static string user;
         public static void PressAnyKey()
