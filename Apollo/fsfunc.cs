@@ -66,7 +66,7 @@ namespace Apollo
                         //KernelVariables.currentdir = KernelVariables.currentdir.Substring(0, pos) + @"\";
                     //}
                                             
-                    var dir = Kernel.fs.GetDirectory(KernelVariables.currentdir);
+                    var dir = Init.fs.GetDirectory(KernelVariables.currentdir);
                     string p = dir.mParent.mName;
                     if (!string.IsNullOrEmpty(p))
                     {
