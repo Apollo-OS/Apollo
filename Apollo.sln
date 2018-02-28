@@ -1,9 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo", "Apollo\Apollo.csproj", "{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apollo", "Apollo\Apollo.csproj", "{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIC Framework", "AIC\AIC Framework\AIC Framework.csproj", "{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIC.Core", "AIC\AIC.Core\AIC.Core.csproj", "{1C206F41-A435-44D7-8794-8754BF3E2FB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIC.Hardware", "AIC\AIC.Hardware\AIC.Hardware.csproj", "{F0D2D6B0-C249-4C38-B0C3-6AC83D29BAE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.GUI", "Apollo.GUI\Apollo.GUI.csproj", "{13EEB09F-E51A-49D8-97FC-55D5AD9486BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Classic", "Apollo.Classic\Apollo.Classic.csproj", "{548BF550-CF86-4117-9368-58E41A3AD240}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B6BF5D3-3BCD-4093-8D01-5187F2613F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C206F41-A435-44D7-8794-8754BF3E2FB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C206F41-A435-44D7-8794-8754BF3E2FB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C206F41-A435-44D7-8794-8754BF3E2FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C206F41-A435-44D7-8794-8754BF3E2FB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0D2D6B0-C249-4C38-B0C3-6AC83D29BAE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D2D6B0-C249-4C38-B0C3-6AC83D29BAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D2D6B0-C249-4C38-B0C3-6AC83D29BAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D2D6B0-C249-4C38-B0C3-6AC83D29BAE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13EEB09F-E51A-49D8-97FC-55D5AD9486BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13EEB09F-E51A-49D8-97FC-55D5AD9486BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13EEB09F-E51A-49D8-97FC-55D5AD9486BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13EEB09F-E51A-49D8-97FC-55D5AD9486BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{548BF550-CF86-4117-9368-58E41A3AD240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{548BF550-CF86-4117-9368-58E41A3AD240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{548BF550-CF86-4117-9368-58E41A3AD240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{548BF550-CF86-4117-9368-58E41A3AD240}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
