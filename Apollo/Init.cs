@@ -5,14 +5,19 @@ using AIC_Framework;
 using Apollo.Environment;
 using Apollo.Internals;
 using System.IO;
+using Sys = Cosmos.System;
+using Cosmos.System.FileSystem.VFS;
 
 namespace Apollo
 {
-    class Init
+    public class Init
     {
-        public static void Start()
+		public static Sys.FileSystem.CosmosVFS fs = new Sys.FileSystem.CosmosVFS();
+		public static void Start()
         {
-            AConsole.WriteLineEx("    Welcome to Apollo OS    ", ConsoleColor.White, ConsoleColor.Gray, true, false);
+			VFSManager.RegisterVFS(fs);
+			fs.Initialize();
+			AConsole.WriteLineEx("    Welcome to Apollo OS    ", ConsoleColor.White, ConsoleColor.Gray, true, false);
             AConsole.WriteLineEx("Press any key to continue...", ConsoleColor.White, ConsoleColor.Gray, true, false);
             AConsole.ReadKey(true);
             bool integchk = IntegrityCheck();

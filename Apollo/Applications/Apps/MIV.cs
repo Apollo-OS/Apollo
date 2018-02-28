@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Apollo.Apps
 {
-    class MIV : Command
+    public class MIV : Command
     {
         public new static string cmdName = "miv";
         public new static string help = cmdName + "\tLaunches the MIV advanced text editor";

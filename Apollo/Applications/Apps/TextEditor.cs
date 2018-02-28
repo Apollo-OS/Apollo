@@ -10,7 +10,7 @@ namespace Apollo.Apps
     /// Cocoapad Editor class
     /// contains methods needed for the editor to function
     /// </summary>
-    class TextEditor : Command
+    public class TextEditor : Command
     {
         /// <summary>
         /// The current text inside the editor is stored in a string

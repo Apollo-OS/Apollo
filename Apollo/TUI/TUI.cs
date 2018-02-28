@@ -8,7 +8,7 @@ using menu = AIC_Framework.AConsole.Menu;
 
 namespace Apollo.TUI
 {
-    class TUI
+    public class TUI
     {
         public static void Run()
         {
