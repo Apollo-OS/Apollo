@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIC.Core", "AIC\AIC.Core\AI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIC.Hardware", "AIC\AIC.Hardware\AIC.Hardware.csproj", "{F0D2D6B0-C249-4C38-B0C3-6AC83D29BAE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.GUI", "Apollo.GUI\Apollo.GUI.csproj", "{13EEB09F-E51A-49D8-97FC-55D5AD9486BB}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Classic", "Apollo.Classic\Apollo.Classic.csproj", "{548BF550-CF86-4117-9368-58E41A3AD240}"
 EndProject
 Global
