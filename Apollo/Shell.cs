@@ -12,7 +12,15 @@ namespace Apollo
 {
     public static class Shell
     {
+		/// <summary>
+		/// List of commands - unused for time being
+		/// </summary>
         public static cmd_mgmt cmds = new cmd_mgmt();
+
+		/// <summary>
+		/// Apollo shell prompt
+		/// </summary>
+		/// <param name="cmdline"></param>
         public static void prompt(string cmdline)
         {
             var command = cmdline.ToLower();

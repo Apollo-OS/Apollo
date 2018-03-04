@@ -13,6 +13,9 @@ namespace Apollo
     public class Init
     {
 		public static Sys.FileSystem.CosmosVFS fs = new Sys.FileSystem.CosmosVFS();
+		/// <summary>
+		/// Starts the INIT method, creating filesystem, registering the filesystem
+		/// </summary>
 		public static void Start()
         {
 			VFSManager.RegisterVFS(fs);
@@ -122,9 +125,14 @@ namespace Apollo
                 return true;
             }
         }
-        public static void UserInit()
+
+		/// <summary>
+		/// Initiates users
+		/// If any are found, add them to the list ( UserMgmt.AddUsers )
+		/// If no users are found, create them
+		/// </summary>
+		public static void UserInit()
         {
-			UserMgmt.AddUsers();
 			string[] users = Directory.GetDirectories(KernelVariables.homedir);
 			if (users.Length == 0)
 			{
@@ -132,6 +140,7 @@ namespace Apollo
 			}
 			else
 			{
+				UserMgmt.AddUsers();
 				Environment_variables.current_usr = UserMgmt.Login();
 			}
         }
