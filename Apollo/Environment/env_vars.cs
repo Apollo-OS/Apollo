@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
 using System.IO;
+using Apollo.Internals;
 
 namespace Apollo.Environment
 {
@@ -12,7 +13,7 @@ namespace Apollo.Environment
         {
             // step 1, calculate MD5 hash from input
             MD5 md5 = MD5.Create();
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] inputBytes = Encoding.ASCII.GetBytes(input);
             byte[] hash = md5.ComputeHash(inputBytes);
             // step 2, convert byte array to hex string
             StringBuilder sb = new StringBuilder();
@@ -49,9 +50,9 @@ namespace Apollo.Environment
             systemdirectory.Add(devdir);
         }
     }
-    public class env_vars
+    public class Environment_variables
     {
-        public static string user;
+		public static User current_usr;
         public static void PressAnyKey()
         {
             PressAnyKey("Press any key to continue...");

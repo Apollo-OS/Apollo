@@ -22,7 +22,7 @@ namespace Apollo.Classic
 		}
 		public static void MainProcess()
 		{
-			Console.Write(env_vars.user + " ~" + KernelVariables.currentdir + " /> ");
+			Console.Write(Environment_variables.current_usr.Name + " ~" + KernelVariables.currentdir + " /> ");
 			string cmd = Console.ReadLine();
 			Shell.prompt(cmd);
 		}

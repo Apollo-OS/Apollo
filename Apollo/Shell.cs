@@ -65,7 +65,11 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             {
                 
             }
-            else if (command.StartsWith("$"))
+			else if (command == "umc")
+			{
+				Internals.UserManagementConsole.Run();
+			}
+			else if (command.StartsWith("$"))
             {
                 //Console.WriteLine("Dictionaries not yet implemented!");
                 usr_vars.Store(cmdCI_args[0].Remove(0, 1), cmdCI_args[1]);
@@ -165,7 +169,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command == "pause")
             {
-                env_vars.PressAnyKey();
+                Environment_variables.PressAnyKey();
             }
             else if (command.StartsWith("rm "))
             {

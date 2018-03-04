@@ -166,7 +166,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
             else if (command == "pause")
             {
-                env_vars.PressAnyKey();
+                Environment_variables.PressAnyKey();
             }
             else if (command.StartsWith("rm "))
             {

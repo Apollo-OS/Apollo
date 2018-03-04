@@ -30,15 +30,7 @@ namespace Apollo
             {
                 Make_sys_dir();
             }
-            if (Directory.GetFiles(KernelVariables.homedir).Length == 0)
-            {
-                UserInit();
-            }
-            else
-            {
-                string user = Directory.GetDirectories(KernelVariables.homedir)[0];
-                env_vars.user = user;
-            }
+			UserInit();
             if (!Directory.Exists(KernelVariables.bindir))
             {
                 Directory.CreateDirectory(KernelVariables.currentdir);
@@ -49,7 +41,7 @@ namespace Apollo
                 usr_vars.ReadVars();
             }
             Console.WriteLine("SysGuard Checks proceeded.");
-            env_vars.PressAnyKey("Press any key to continue boot...");
+            Environment_variables.PressAnyKey("Press any key to continue boot...");
             Console.Clear();
             
         }
@@ -132,13 +124,16 @@ namespace Apollo
         }
         public static void UserInit()
         {
-            Console.WriteLine("It is dangerous to run some commands as a root user,\nso it's important that you use a non-admin user.");
-            Console.Write ("Enter a new username for first user:");
-            string user = Console.ReadLine();
-            Console.Write("Enter user password: ");
-            string pass = Console.ReadLine();
-            Account.Accounts.Add(new Account(user, pass));
-            env_vars.user = user;
+			UserMgmt.AddUsers();
+			string[] users = Directory.GetDirectories(KernelVariables.homedir);
+			if (users.Length == 0)
+			{
+				Environment_variables.current_usr = UserMgmt.NewUser();
+			}
+			else
+			{
+				Environment_variables.current_usr = UserMgmt.Login();
+			}
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Apollo.Apps
             Console.WriteLine("Once you have finished you can type '$SAVE' to save your file or '$END'");
             Console.WriteLine("to close without saving. '$RESET' can be used to start the file again from\nfresh, but use with caution!");
             Console.WriteLine("\nFilenames can currently only have 3 letter extensions but this will be fixed in the future.");
-            Environment.env_vars.PressAnyKey("Press any key to begin!");
+            Environment.Environment_variables.PressAnyKey("Press any key to begin!");
             DrawScreen();
             text = "";
             string line;

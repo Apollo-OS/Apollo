@@ -38,7 +38,7 @@ namespace Apollo.Apps
             {
                 Console.WriteLine(ex.Message);
             }
-            Environment.env_vars.PressAnyKey();
+            Environment.Environment_variables.PressAnyKey();
         }
         private static void DrawScreen()
         {
