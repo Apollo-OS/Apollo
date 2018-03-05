@@ -27,7 +27,18 @@ namespace Apollo.Environment
     }
     public class KernelVariables
     {
-        public static List<string> systemdirectory = new List<string>();
+        public static List<string> SystemDirectories = new List<string>()
+		{
+			rootdir,
+			etcdir,
+			bindir,
+			usrdir,
+			homedir,
+			rootusrdir,
+			tmpdir,
+			vardir,
+			devdir
+		};
         public static string rootdir = @"0:\";
         public static string currentdir = rootdir;
         public static string etcdir = rootdir + "etc";
@@ -38,17 +49,6 @@ namespace Apollo.Environment
         public static string tmpdir = rootdir + "tmp";
         public static string vardir = rootdir + "var";
         public static string devdir = rootdir + "dev";
-        public static void SysDirList()
-        {
-            systemdirectory.Add(etcdir);
-            systemdirectory.Add(bindir);
-            systemdirectory.Add(usrdir);
-            systemdirectory.Add(homedir);
-            systemdirectory.Add(rootusrdir);
-            systemdirectory.Add(tmpdir);
-            systemdirectory.Add(vardir);
-            systemdirectory.Add(devdir);
-        }
     }
     public class Environment_variables
     {

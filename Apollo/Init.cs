@@ -23,20 +23,26 @@ namespace Apollo
 			AConsole.WriteLineEx("    Welcome to Apollo OS    ", ConsoleColor.White, ConsoleColor.Gray, true, false);
             AConsole.WriteLineEx("Press any key to continue...", ConsoleColor.White, ConsoleColor.Gray, true, false);
             AConsole.ReadKey(true);
-            bool integchk = IntegrityCheck();
-            if (integchk == true)
-            {
-                Console.WriteLine("File System integrity checks completed successfully!");
-                Console.WriteLine("Continuing boot...");
-            }
-            else
-            {
-                Make_sys_dir();
-            }
+			if (IntegrityCheck() == false)
+			{
+				Console.Clear();
+				Console.WriteLine("Filesystem integrity checks completed!");
+				Console.WriteLine("Not all directories were present however, so they have been recreated.");
+				Console.WriteLine("Data loss is to be expected.");
+				Environment_variables.PressAnyKey();
+				Console.Clear();
+			}
+			else
+			{
+				Console.Clear();
+				Console.WriteLine("Filesystem integrity checks completed!");
+				Console.WriteLine("All filesystem checks passed successfully, but be sure to check files in case.");
+				Environment_variables.PressAnyKey();
+				Console.Clear();
+			}
 			UserInit();
-            if (!Directory.Exists(KernelVariables.bindir))
+            if (!File.Exists(usr_vars.varsfile))
             {
-                Directory.CreateDirectory(KernelVariables.currentdir);
                 File.Create(KernelVariables.bindir + "vars.sys").Dispose();
             }
             else
@@ -50,9 +56,12 @@ namespace Apollo
         }
         private static void Make_sys_dir()
         {
-            KernelVariables.SysDirList();
-            foreach (string dir in KernelVariables.systemdirectory)
+            foreach (string dir in KernelVariables.SystemDirectories)
             {
+				if (dir == KernelVariables.rootdir)
+				{
+					continue;
+				}
                 Console.WriteLine("Creating " + dir + "...");
                 try
                 {
@@ -65,65 +74,40 @@ namespace Apollo
             }
         }
 
-        /// <summary>
-        /// TODO: Check if all directories exist in a foreach?
-        /// </summary>
-        /// <returns></returns>
+		/// <summary>
+		/// IEnumerable bool, returns true if a directory exists, if not, return false
+		/// </summary>
+		/// <returns></returns>
         public static bool IntegrityCheck()
         {
-            KernelVariables.SysDirList();
-            if (!Directory.Exists(KernelVariables.etcdir))
-            {
-                Console.WriteLine("System directory <" + KernelVariables.etcdir + "> is missing! Recreating directory...");
-                fsfunc.mkdir(KernelVariables.etcdir, true);
-                return false;
-            }
-            if (!Directory.Exists(KernelVariables.homedir))
-            {
-                Console.WriteLine("System directory <" + KernelVariables.homedir + "> is missing! Recreating directory...");
-                fsfunc.mkdir(KernelVariables.homedir, true);
-                return false;
-            }
-            if (!Directory.Exists(KernelVariables.bindir))
-            {
-                Console.WriteLine("System directory <" + KernelVariables.bindir + "> is missing! Recreating directory...");
-                fsfunc.mkdir(KernelVariables.bindir, true);
-                return false;
-            }
-            if (!Directory.Exists(KernelVariables.devdir))
-            {
-                Console.WriteLine("System directory <" + KernelVariables.devdir + "> is missing! Recreating directory...");
-                fsfunc.mkdir(KernelVariables.devdir, true);
-                return false;
-            }
-            if (!Directory.Exists(KernelVariables.rootusrdir))
-            {
-                Console.WriteLine("System directory <" + KernelVariables.rootusrdir + "> is missing! Recreating directory...");
-                fsfunc.mkdir(KernelVariables.rootusrdir, true);
-                return false;
-            }
-            if (!Directory.Exists(KernelVariables.tmpdir))
-            {
-                Console.WriteLine("System directory <" + KernelVariables.tmpdir + "> is missing! Recreating directory...");
-                fsfunc.mkdir(KernelVariables.tmpdir, true);
-                return false;
-            }
-            if (!Directory.Exists(KernelVariables.usrdir))
-            {
-                Console.WriteLine("System directory <" + KernelVariables.usrdir + "> is missing! Recreating directory...");
-                fsfunc.mkdir(KernelVariables.usrdir, true);
-                return false;
-            }
-            if (!Directory.Exists(KernelVariables.vardir))
-            {
-                Console.WriteLine("System directory <" + KernelVariables.vardir + "> is missing! Recreating directory...");
-                fsfunc.mkdir(KernelVariables.vardir, true);
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+			int i;
+			int dirs = KernelVariables.SystemDirectories.Count;
+			for (i = 0; i < dirs;)
+			{
+				foreach (string dir in KernelVariables.SystemDirectories)
+				{
+					if (dir == KernelVariables.rootdir)
+					{
+						i++;
+						continue;
+					}
+					if (!Directory.Exists(dir))
+					{
+						return false;
+					}
+					else if (Directory.Exists(dir))
+					{
+						i++;
+						continue;
+					}
+					else
+					{
+						return false;
+					}
+				}
+				return true;
+			}
+			return true;
         }
 
 		/// <summary>
