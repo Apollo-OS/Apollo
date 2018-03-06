@@ -20,15 +20,15 @@ namespace Apollo.Classic
 			Console.Clear();
 			Init.Start();
 		}
+		protected override void Run()
+		{
+			MainProcess();
+		}
 		public static void MainProcess()
 		{
 			Console.Write(Environment_variables.current_usr.Name + " ~" + KernelVariables.currentdir + " /> ");
 			string cmd = Console.ReadLine();
 			Shell.prompt(cmd);
-		}
-		protected override void Run()
-		{
-			MainProcess();
 		}
 	}
 }

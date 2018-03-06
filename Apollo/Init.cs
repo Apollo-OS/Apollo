@@ -19,9 +19,11 @@ namespace Apollo
 		public static void Start()
         {
 			VFSManager.RegisterVFS(fs);
+			Console.WriteLine("Initializing filesystem...");
 			fs.Initialize();
-			AConsole.WriteLineEx("    Welcome to Apollo OS    ", ConsoleColor.White, ConsoleColor.Gray, true, false);
-            AConsole.WriteLineEx("Press any key to continue...", ConsoleColor.White, ConsoleColor.Gray, true, false);
+			Console.Clear();
+			AConsole.WriteLineEx("    Welcome to Apollo OS    ", ConsoleColor.White, ConsoleColor.Black, true, false);
+            AConsole.WriteLineEx("Press any key to continue...", ConsoleColor.White, ConsoleColor.Black, true, false);
             AConsole.ReadKey(true);
 			if (IntegrityCheck() == false)
 			{
