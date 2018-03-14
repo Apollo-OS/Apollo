@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.Net.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProjectGuid>{cbae884b-71bb-419a-a3ed-6eafa8e0f440}</ProjectGuid>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AIC_FrameworkBoot.Cosmos" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Cosmos.Debug.Kernel" Version="*" />
+    <PackageReference Include="Cosmos.System2" Version="*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\AIC.Core\AIC.Core.csproj" />
+    <ProjectReference Include="..\AIC.Hardware\AIC.Hardware.csproj" />
+  </ItemGroup>
+
+</Project>
